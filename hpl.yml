@@ -1,0 +1,6 @@
+---
+- hosts: login-node
+  become: true
+  become_user: alice
+  roles:
+    - hpl

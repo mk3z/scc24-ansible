@@ -1,0 +1,10 @@
+- name: Get slurm source
+  get_url:
+    url: https://example.com/slurm.tar.gz
+    dest: "{{ install_dir }}"
+    mode: "0440"
+
+- name: Unzip slurm source
+  unarchive:
+    src: "{{ install_dir }}"
+    dest: "{{ install_dir }}"

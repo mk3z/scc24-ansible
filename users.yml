@@ -1,0 +1,5 @@
+users:
+  - name: "alice"
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAr..."
+  - name: "bob"
+    ssh_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6..."

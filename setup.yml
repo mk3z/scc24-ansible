@@ -1,0 +1,30 @@
+---
+- name: Set up login node users
+  hosts: login-node
+  become: true
+  vars_files:
+    - users.yml
+
+  tasks:
+    - name: Ensure users are present
+      user:
+        name: "{{ item.name }}"
+        state: present
+        shell: /bin/bash
+      loop: "{{ users }}"
+
+    - name: Create .ssh directory
+      file:
+        path: "/home/{{ item.name }}/.ssh"
+        state: directory
+        mode: '0700'
+        owner: "{{ item.name }}"
+        group: "{{ item.name }}"
+      loop: "{{ users }}"
+
+    - name: Add SSH authorized keys
+      authorized_key:
+        user: "{{ item.name }}"
+        key: "{{ item.ssh_key }}"
+        state: present
+      loop: "{{ users }}"

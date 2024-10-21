@@ -1,0 +1,13 @@
+- name: Download HPL source
+  get_url:
+    url: "https://www.netlib.org/benchmark/hpl/hpl-{{ version }}.tar.gz"
+    dest: "{{ install_dir }}"
+
+- name: Extract HPL source
+  unarchive:
+    src: "{{ install_dir }}/hpl-{{ version }}.tar.gz"
+    dest: "{{ install_dir }}"
+
+- name: Build HPL
+  make:
+    chdir: "{{ source_dir }}"
